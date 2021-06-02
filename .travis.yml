@@ -12,5 +12,12 @@ before_install:
 script:
   - docker run -e CI=true vrmarine/docker-react-app npm run test -- --coverage
 
-after_success:
-  - echo "Test success"
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-northeast-2"
+  app: docker-react-app
+  bucket_name: "elasticbeanstalk-ap-northeast-2-730690868697"
+  bucket_path: "docker-react-app"
+  on:
+    branch: main
+
